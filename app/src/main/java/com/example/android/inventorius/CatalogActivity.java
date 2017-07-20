@@ -23,7 +23,7 @@ import com.example.android.inventorius.data.ItemsContract.ItemEntry;
 
 public class CatalogActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
 
-    private static final int PET_LOADER = 0;
+    private static final int ITEM_LOADER = 0;
 
     ItemCursorAdapter mCursorAdapter;
 
@@ -63,19 +63,19 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
                 // by appending the "id" (passed as input to this method) onto the
                 // {@link ItemEntry#CONTENT_URI}.
                 // For example, the URI would be "content://com.example.android.items/items/2"
-                // if the pet with ID 2 was clicked on.
+                // if the item with ID 2 was clicked on.
                 Uri currentItemUri = ContentUris.withAppendedId(ItemsContract.ItemEntry.CONTENT_URI, id);
 
                 // Set the URI on the data field of the intent
                 intent.setData(currentItemUri);
 
-                // Launch the {@link EditorActivity} to display the data for the current pet.
+                // Launch the {@link EditorActivity} to display the data for the current item.
                 startActivity(intent);
             }
         });
 
         // Kick off the loader
-        getLoaderManager().initLoader(PET_LOADER, null, this);
+        getLoaderManager().initLoader(ITEM_LOADER, null, this);
     }
 
     /**
@@ -83,7 +83,7 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
      */
     private void insertItem(){
         // Create a ContentValues object where column names are the keys,
-        // and pencil's pet attributes are the values.
+        // and pencil's item attributes are the values.
         ContentValues values = new ContentValues();
         values.put(ItemEntry.COLUMN_ITEM_NAME, "Pencil");
         values.put(ItemEntry.COLUMN_ITEM_QUANTITY, "5");
@@ -91,13 +91,13 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
 
         // Insert a new row for pencil into the provider using the ContentResolver.
         // Use the {@link ItemEntry#CONTENT_URI} to indicate that we want to insert
-        // into the pets database table.
+        // into the items database table.
         // Receive the new content URI that will allow us to access pencil's data in the future.
         Uri newUri = getContentResolver().insert(ItemEntry.CONTENT_URI, values);
     }
 
     /**
-     *  Helper method to delete all pets in the database
+     *  Helper method to delete all items in the database
      */
     private void deleteAllItems() {
         int rowsDeleted = getContentResolver().delete(ItemEntry.CONTENT_URI, null, null);

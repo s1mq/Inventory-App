@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.android.inventorius.data.ItemsContract.ItemEntry;
@@ -104,16 +105,68 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         mNameEditText.setOnTouchListener(mTouchListener);
         mQuantityEditText.setOnTouchListener(mTouchListener);
         mPriceEditText.setOnTouchListener(mTouchListener);
+
+        final ImageButton increaseQuantity = (ImageButton) findViewById(R.id.increase_quantity);
+        increaseQuantity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                quantityPlusOne();
+            }
+        });
+
+        final ImageButton decreaseQuantity = (ImageButton) findViewById(R.id.decrease_quantity);
+        decreaseQuantity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                quantityMinusOne();
+            }
+        });
+    }
+
+    public void quantityPlusOne() {
+
+        String quantityString = mQuantityEditText.getText().toString().trim();
+        int plusOne = 0;
+        if (!TextUtils.isEmpty(quantityString)) {
+            plusOne = Integer.parseInt(quantityString);
+        }
+        plusOne++;
+        String quantityPlusOne = String.valueOf(plusOne);
+        mQuantityEditText.setText(quantityPlusOne);
+
+    }
+
+    public void quantityMinusOne() {
+
+        String quantityString = mQuantityEditText.getText().toString().trim();
+        int minusOne = 0;
+        if (!TextUtils.isEmpty(quantityString)) {
+            minusOne = Integer.parseInt(quantityString);
+        }
+        if (minusOne == 0) {
+            Toast.makeText(this, "Quantity must be greater than or equal to 0",
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+        minusOne--;
+        String quantityMinusOne = String.valueOf(minusOne);
+        mQuantityEditText.setText(quantityMinusOne);
+
     }
 
     /**
      * Get user input from editor and save item into database.
      */
-    private void savePet() {
+    private void saveItem() {
 
         // Read from input fields
         // Use trim to eliminate leading or trailing white space
         String nameString = mNameEditText.getText().toString().trim();
+        if (nameString.matches("")) {
+            Toast.makeText(this, "Item name required. Item not saved", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         String quantityString = mQuantityEditText.getText().toString().trim();
         String priceString = mPriceEditText.getText().toString().trim();
 
@@ -130,7 +183,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         // Create a ContentValues object where column names are the keys,
         // and item attributes from the editor are the values.
         ContentValues values = new ContentValues();
-        values.put(ItemEntry.COLUMN_ITEM_IMAGE, nameString);
+        values.put(ItemEntry.COLUMN_ITEM_NAME, nameString);
 
         // If the quantity is not provided by the user, don't try to parse the string into an
         // integer value. Use 0 by default.
@@ -214,7 +267,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             // Respond to a click on the "Save" menu option
             case R.id.action_save:
                 // Save item to database
-                savePet();
+                saveItem();
                 // Exit activity
                 finish();
                 return true;
@@ -284,8 +337,8 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             return null;
         }
 
-        // Since the editor shows all pet attributes, define a projection that contains
-        // all columns from the pet table
+        // Since the editor shows all item attributes, define a projection that contains
+        // all columns from the item table
         String[] projection = {
                 ItemEntry._ID,
                 ItemEntry.COLUMN_ITEM_NAME,

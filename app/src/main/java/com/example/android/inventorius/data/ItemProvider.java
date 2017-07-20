@@ -146,8 +146,8 @@ public class ItemProvider extends ContentProvider {
     private Uri insertItem(Uri uri, ContentValues values) {
         // Check that the name is not null
         String name = values.getAsString(ItemEntry.COLUMN_ITEM_NAME);
-        if (name == null || name.equals("")) {
-            throw new IllegalArgumentException("Pet requires a name");
+        if (name == null) {
+            throw new IllegalArgumentException("Item requires a name");
         }
 
         // Check that price is greater than or equal to zero
@@ -156,13 +156,12 @@ public class ItemProvider extends ContentProvider {
             throw new IllegalArgumentException("Price must be greater than or equal to 0");
         }
 
-        // Check that the quantity is not null
+        // Check that the quantity is greater than or equal to zero
         int quantity = values.getAsInteger(ItemEntry.COLUMN_ITEM_QUANTITY);
-        if (quantity == 0) {
+        if (quantity != 0 && quantity < 0) {
             throw new IllegalArgumentException("Quantity requires a value");
         }
 
-        // No need to check the image, any value is valid (including null).
 
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
 
@@ -216,7 +215,7 @@ public class ItemProvider extends ContentProvider {
         if (values.containsKey(ItemEntry.COLUMN_ITEM_NAME)) {
             String name = values.getAsString(ItemEntry.COLUMN_ITEM_NAME);
             if (name == null || name.equals("")) {
-                throw new IllegalArgumentException("Pet requires a name");
+                throw new IllegalArgumentException("Item requires a name");
             }
         }
 
@@ -226,7 +225,7 @@ public class ItemProvider extends ContentProvider {
             // Check that the price is greater than or equal to 0
             Integer price = values.getAsInteger(ItemEntry.COLUMN_ITEM_PRICE);
             if (price != null && price < 0) {
-                throw new IllegalArgumentException("Pet requires valid price");
+                throw new IllegalArgumentException("Item requires valid price");
             }
         }
 
@@ -234,12 +233,11 @@ public class ItemProvider extends ContentProvider {
         // Check that the quantity is not null.
         if (values.containsKey(ItemEntry.COLUMN_ITEM_QUANTITY)) {
             Integer quantity = values.getAsInteger(ItemEntry.COLUMN_ITEM_QUANTITY);
-            if (quantity == 0) {
+            if (quantity == null) {
                 throw new IllegalArgumentException("Quantity requires a value");
             }
         }
 
-        // No need to check the image, any value is valid (including null).
 
         // If there are no values to update, then don't try to update the database
         if (values.size() == 0) {

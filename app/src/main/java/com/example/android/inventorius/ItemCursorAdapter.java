@@ -12,8 +12,8 @@ import com.example.android.inventorius.data.ItemsContract;
 
 /**
  * {@link ItemCursorAdapter} is an adapter for a list or grid view
- * that uses a {@link Cursor} of pet data as its data source. This adapter knows
- * how to create list items for each row of pet data in the {@link Cursor}.
+ * that uses a {@link Cursor} of item data as its data source. This adapter knows
+ * how to create list items for each row of item data in the {@link Cursor}.
  */
 public class ItemCursorAdapter extends CursorAdapter{
 
@@ -63,12 +63,12 @@ public class ItemCursorAdapter extends CursorAdapter{
         int quantityColumnIndex = cursor.getColumnIndex(ItemsContract.ItemEntry.COLUMN_ITEM_QUANTITY);
         int priceColumnIndex = cursor.getColumnIndex(ItemsContract.ItemEntry.COLUMN_ITEM_PRICE);
 
-        // Read the pet attributes from the Cursor for the current pet
+        // Read the item attributes from the Cursor for the current item
         String itemName = cursor.getString(nameColumnIndex);
         String itemQuantity = cursor.getString(quantityColumnIndex);
         String itemPrice = cursor.getString(priceColumnIndex);
 
-        // Update the TextViews with the attributes for the current pet
+        // Update the TextViews with the attributes for the current item
         nameTextView.setText(itemName);
         quantityTextView.setText(itemQuantity);
         priceTextView.setText(itemPrice);
