@@ -1,9 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
     tools:context="com.example.android.inventorius.EditorActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/pencil"
+        android:scaleType="centerCrop" />
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Item"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@color/colorAccent"/>
+
+        <EditText
+            android:id="@+id/edit_item_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:inputType="textCapWords"
+            android:hint="Pencil"
+            android:fontFamily="sans-serif-light"
+            android:textAppearance="?android:textAppearanceMedium"/>
+        
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Quantity"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@color/colorAccent"/>
+
+        <EditText
+            android:id="@+id/edit_quantity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:inputType="number"
+            android:hint="5"
+            android:fontFamily="sans-serif-light"
+            android:textAppearance="?android:textAppearanceMedium"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/increase_quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_add"
+                android:backgroundTint="@color/colorAccent"/>
+
+            <ImageButton
+                android:id="@+id/decrease_quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_remove"
+                android:backgroundTint="@color/colorAccent"/>
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Price (€)"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@color/colorAccent"/>
+
+        <EditText
+            android:id="@+id/edit_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:inputType="number"
+            android:hint="25"
+            android:fontFamily="sans-serif-light"
+            android:textAppearance="?android:textAppearanceMedium"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>
