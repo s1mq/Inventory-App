@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:inputType="textCapWords"
-            android:hint="Pencil"
+            android:hint="Name/Type"
             android:fontFamily="sans-serif-light"
             android:textAppearance="?android:textAppearanceMedium"/>
         
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:inputType="number"
-            android:hint="5"
+            android:hint="pcs"
             android:fontFamily="sans-serif-light"
             android:textAppearance="?android:textAppearanceMedium"/>
 
@@ -110,7 +110,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:inputType="number"
-            android:hint="25"
+            android:hint="0"
             android:fontFamily="sans-serif-light"
             android:textAppearance="?android:textAppearanceMedium"/>
 
