@@ -11,7 +11,6 @@ import android.util.Log;
 
 import com.example.android.inventorius.data.ItemsContract.ItemEntry;
 
-import static com.example.android.inventorius.data.ItemsContract.ItemEntry.notZero;
 
 /**
  * {@link ContentProvider} for the Inventorius app.

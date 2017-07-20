@@ -99,9 +99,6 @@ public final class ItemsContract {
          */
         public static final String COLUMN_ITEM_IMAGE = "image";
 
-        public static boolean notZero(int quantity) {
-            return quantity >= 0;
-        }
     }
 
 
