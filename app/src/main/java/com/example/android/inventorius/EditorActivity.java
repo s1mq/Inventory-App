@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -121,6 +122,35 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                 quantityMinusOne();
             }
         });
+
+        Button orderItem = (Button) findViewById(R.id.item_order);
+        orderItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                orderEmail();
+
+            }
+        });
+    }
+
+    public void orderEmail() {
+
+        String[] addresses = {"example@gmail.com"};
+
+        String subject = "Order summary";
+
+        String message = "Required items to restock: " +
+                mNameEditText.getText().toString().trim() + "\nCurrent quantity: " +
+                mQuantityEditText.getText().toString().trim();
+
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+        intent.putExtra(Intent.EXTRA_EMAIL, addresses);
+        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        intent.putExtra(Intent.EXTRA_TEXT, message);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
     }
 
     public void quantityPlusOne() {
