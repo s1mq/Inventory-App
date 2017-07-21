@@ -95,7 +95,7 @@ public final class ItemsContract {
         /**
          * Image of the item
          * <p>
-         * Type: BYTE
+         * Type: TEXT
          */
         public static final String COLUMN_ITEM_IMAGE = "image";
 
