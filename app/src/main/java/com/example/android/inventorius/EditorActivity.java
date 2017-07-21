@@ -12,7 +12,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.app.LoaderManager;
-import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.NavUtils;
 import android.content.CursorLoader;
@@ -35,6 +34,8 @@ import com.example.android.inventorius.data.ItemsContract.ItemEntry;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+
+import static android.os.Build.VERSION_CODES.M;
 
 public class EditorActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
     /**
@@ -90,7 +91,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     /**
      * Content URI for the image
      */
-    private Uri mUri;
+    private Uri mImageUri;
 
     /**
      * Imageview for the item's image
@@ -100,6 +101,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     private ImageButton mIncrease;
     private ImageButton mDecrease;
     private FloatingActionButton mImageFab;
+    private String mImageString;
 
 
     @Override
@@ -218,13 +220,13 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             // provided to this method as a parameter.  Pull that uri using "resultData.getData()"
 
             if (resultData != null) {
-                mUri = resultData.getData();
-                Log.i(LOG_TAG, "Uri: " + mUri.toString());
+                mImageUri = resultData.getData();
+                Log.i(LOG_TAG, "Uri: " + mImageUri.toString());
 
                 // mImageView is the ImageView where we will display the image. We will use
                 // setImageBitmap method to set the image. It requires a Bitmap which is provided
                 // by getBitmapFromUri method. Make sure to use the getBitmapFromUri method as it is.
-                mImageView.setImageBitmap(getBitmapFromUri(mUri));
+                mImageView.setImageBitmap(getBitmapFromUri(mImageUri));
             }
         }
     }
@@ -365,17 +367,18 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             return;
         }
 
-        String imageString = mUri.toString();
-        if (imageString.matches("")) {
+        if (mImageUri == null) {
             Toast.makeText(this, R.string.item_image_required, Toast.LENGTH_SHORT).show();
             return;
+        } else {
+            mImageString = mImageUri.toString();
         }
 
         // Check if this is supposed to be a new item
         // and check if all the fields in the editor are blank
         if (mCurrentItemUri == null &&
                 TextUtils.isEmpty(nameString) && TextUtils.isEmpty(quantityString) &&
-                TextUtils.isEmpty(priceString) && TextUtils.isEmpty(imageString)) {
+                TextUtils.isEmpty(priceString) && TextUtils.isEmpty(mImageString)) {
             // Since no fields were modified, we can return early without creating a new item.
             // No need to create ContentValues and no need to do any ContentProvider operations.
             return;
@@ -401,7 +404,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             price = Integer.parseInt(priceString);
         }
         values.put(ItemEntry.COLUMN_ITEM_PRICE, price);
-        values.put(ItemEntry.COLUMN_ITEM_IMAGE, imageString);
+        values.put(ItemEntry.COLUMN_ITEM_IMAGE, mImageString);
 
         // Determine if this is a new or existing item by checking if mCurrentItemUri is null or not
         if (mCurrentItemUri == null) {
@@ -585,6 +588,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             mPriceEditText.setText(Integer.toString(price));
             if (image != null) {
                 mImageView.setImageURI(Uri.parse(image));
+                mImageUri = Uri.parse(mImageView.toString());
             }
 
 
@@ -598,6 +602,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         mNameEditText.setText("");
         mQuantityEditText.setText("");
         mPriceEditText.setText("");
+        mImageView.setImageURI(Uri.parse(""));
 
     }
 
