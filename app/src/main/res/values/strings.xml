@@ -61,5 +61,13 @@
 
     <!-- Toast message in editor when current item has failed to be deleted [CHAR LIMIT=NONE] -->
     <string name="editor_delete_item_failed">Error with deleting item</string>
+    <string name="item_name_required">Item name required. Product not saved</string>
+    <string name="item_quantity_required">Item quantity required. Product not saved</string>
+    <string name="item_price_required">Item price required. Product not saved</string>
+    <string name="item_image_required">Item image required. Product not saved</string>
+    <string name="example_email">example@gmail.com</string>
+    <string name="order_summary">Order summary</string>
+    <string name="items_to_restock">Required items to restock:</string>
+    <string name="current_quantity">\nCurrent quantity:</string>
 
 </resources>

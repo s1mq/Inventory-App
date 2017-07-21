@@ -146,7 +146,7 @@ public class ItemProvider extends ContentProvider {
     private Uri insertItem(Uri uri, ContentValues values) {
         // Check that the name is not null
         String name = values.getAsString(ItemEntry.COLUMN_ITEM_NAME);
-        if (name == null) {
+        if (name == null || name.matches("")) {
             throw new IllegalArgumentException("Item requires a name");
         }
 
@@ -161,6 +161,8 @@ public class ItemProvider extends ContentProvider {
         if (quantity != 0 && quantity < 0) {
             throw new IllegalArgumentException("Quantity requires a value");
         }
+
+
 
 
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
@@ -237,6 +239,8 @@ public class ItemProvider extends ContentProvider {
                 throw new IllegalArgumentException("Quantity requires a value");
             }
         }
+
+
 
 
         // If there are no values to update, then don't try to update the database
