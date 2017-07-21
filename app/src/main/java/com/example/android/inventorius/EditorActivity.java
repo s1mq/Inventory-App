@@ -591,8 +591,9 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             mQuantityEditText.setText(Integer.toString(quantity));
             mPriceEditText.setText(Integer.toString(price));
             if (image != null) {
-                mImageView.setImageURI(Uri.parse(image));
-                mImageUri = Uri.parse(mImageView.toString());
+                final Uri mNewUri = Uri.parse(image);
+                mImageUri = mNewUri;
+                mImageView.setImageBitmap(getBitmapFromUri(mNewUri));
             }
 
 
