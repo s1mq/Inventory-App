@@ -2,20 +2,20 @@ package com.example.android.inventorius;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.LoaderManager;
 import android.content.ContentValues;
+import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.Loader;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.app.LoaderManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.NavUtils;
-import android.content.CursorLoader;
-import android.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -34,10 +34,6 @@ import com.example.android.inventorius.data.ItemsContract.ItemEntry;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-
-import static android.os.Build.VERSION_CODES.M;
-import static com.example.android.inventorius.R.id.price;
-import static com.example.android.inventorius.R.id.quantity;
 
 public class EditorActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
     /**
@@ -466,9 +462,10 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     }
 
     /**
-     +     * This method is called after invalidateOptionsMenu(), so that the
-     +     * menu can be updated (some menu items can be hidden or made visible).
-     +     */
+     * +     * This method is called after invalidateOptionsMenu(), so that the
+     * +     * menu can be updated (some menu items can be hidden or made visible).
+     * +
+     */
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
@@ -608,7 +605,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             }
 
 
-
         }
     }
 
@@ -692,7 +688,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             int rowsDeleted = getContentResolver().delete(mCurrentItemUri, null, null);
 
             // Show a toast message depending on whether or not the delete was succesful.
-            if (rowsDeleted == 0){
+            if (rowsDeleted == 0) {
                 // If no rows were deleted, then there was an error with the deletion.
                 Toast.makeText(this, getString(R.string.editor_delete_item_failed),
                         Toast.LENGTH_SHORT).show();

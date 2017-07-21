@@ -1,7 +1,6 @@
 package com.example.android.inventorius;
 
 import android.app.LoaderManager;
-import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.CursorLoader;
@@ -17,14 +16,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.android.inventorius.data.ItemsContract;
 import com.example.android.inventorius.data.ItemsContract.ItemEntry;
 
-public class CatalogActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
+public class CatalogActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final int ITEM_LOADER = 0;
 
@@ -84,7 +81,7 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
     /**
      * Helper method to insert hardcoded item data into the database. For debugging purposes only.
      */
-    private void insertItem(){
+    private void insertItem() {
         // Create a ContentValues object where column names are the keys,
         // and pencil's item attributes are the values.
         ContentValues values = new ContentValues();
@@ -101,7 +98,7 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
     }
 
     /**
-     *  Helper method to delete all items in the database
+     * Helper method to delete all items in the database
      */
     private void deleteAllItems() {
         int rowsDeleted = getContentResolver().delete(ItemEntry.CONTENT_URI, null, null);

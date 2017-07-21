@@ -1,6 +1,5 @@
 package com.example.android.inventorius.data;
 
-import android.content.ClipData;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;

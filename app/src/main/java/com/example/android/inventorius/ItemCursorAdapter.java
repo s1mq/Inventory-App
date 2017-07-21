@@ -80,22 +80,20 @@ public class ItemCursorAdapter extends CursorAdapter {
         quantityTextView.setText(itemQuantity);
         priceTextView.setText(itemPrice);
 
-        // Hide sale button if quantity is zero
-        ImageButton saleButton = (ImageButton) view.findViewById(R.id.item_sale);
-
         // Decrease quantity of the current item when the sale button is clicked
+        ImageButton saleButton = (ImageButton) view.findViewById(R.id.item_sale);
         saleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Get the current quantity for the item
                 int currentQuantity = Integer.parseInt(quantityTextView.getText().toString());
                 // Decrease the quantity by one
-                if (currentQuantity >0) {
+                if (currentQuantity > 0) {
 
                     currentQuantity--;
                 } else {
                     Toast.makeText(context.getApplicationContext(),
-                            R.string.quantity_greater_than_zero,Toast.LENGTH_SHORT).show();
+                            R.string.quantity_greater_than_zero, Toast.LENGTH_SHORT).show();
                 }
                 // Display the changed quantity value
                 quantityTextView.setText(Integer.toString(currentQuantity));

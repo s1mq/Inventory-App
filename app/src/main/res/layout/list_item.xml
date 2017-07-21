@@ -3,10 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants"
     android:gravity="center"
-    android:padding="@dimen/activity_margin"
-    android:descendantFocusability="blocksDescendants">
-
+    android:padding="@dimen/activity_margin">
 
 
     <TextView
@@ -48,5 +47,5 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:backgroundTint="@color/colorAccent"
-        android:src="@drawable/ic_euro_symbol"/>
+        android:src="@drawable/ic_euro_symbol" />
 </LinearLayout>

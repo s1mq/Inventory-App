@@ -88,5 +88,16 @@
 
     <!-- Toast message when item's name is required [CHAR LIMIT=NONE] -->
     <string name="quantity_greater_than_zero">Quantity must be greater than or equal to 0</string>
+    <string name="content_desc_item_image">item_image</string>
+    <string name="item_description">Item</string>
+    <string name="item_name_type">Name/Type</string>
+    <string name="item_quantity">Quantity (pcs)</string>
+    <string name="item_quantity_value">0</string>
+    <string name="item_price">Price (€)</string>
+    <string name="item_price_value">0</string>
+    <string name="order_button">order</string>
+    <string name="increase_item_quantity">Increase item quantity</string>
+    <string name="decrease_item_quantity">Decrease item quantity</string>
+    <string name="no_items_image">No items image</string>
 
 </resources>

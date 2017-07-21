@@ -267,7 +267,7 @@ public class ItemProvider extends ContentProvider {
 
         // If 1 or more rows were updated, then notify all listeners that the data at the
         // given URI has changed
-        if (rowsUpdated != 0){
+        if (rowsUpdated != 0) {
             getContext().getContentResolver().notifyChange(uri, null);
         }
 
