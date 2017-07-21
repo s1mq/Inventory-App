@@ -61,13 +61,32 @@
 
     <!-- Toast message in editor when current item has failed to be deleted [CHAR LIMIT=NONE] -->
     <string name="editor_delete_item_failed">Error with deleting item</string>
+
+    <!-- Toast message in editor when item's name is required [CHAR LIMIT=NONE] -->
     <string name="item_name_required">Item name required. Product not saved</string>
+
+    <!-- Toast message in editor when item's quantity is required [CHAR LIMIT=NONE] -->
     <string name="item_quantity_required">Item quantity required. Product not saved</string>
+
+    <!-- Toast message in editor when item's price is required [CHAR LIMIT=NONE] -->
     <string name="item_price_required">Item price required. Product not saved</string>
+
+    <!-- Toast message in editor when item's image is required [CHAR LIMIT=NONE] -->
     <string name="item_image_required">Item image required. Product not saved</string>
+
+    <!-- Sample email address [CHAR LIMIT=NONE] -->
     <string name="example_email">example@gmail.com</string>
+
+    <!-- Sample order summary [CHAR LIMIT=NONE] -->
     <string name="order_summary">Order summary</string>
+
+    <!-- Sample email's restock String [CHAR LIMIT=NONE] -->
     <string name="items_to_restock">Required items to restock:</string>
+
+    <!-- Sample email's restock String [CHAR LIMIT=NONE] -->
     <string name="current_quantity">\nCurrent quantity:</string>
+
+    <!-- Toast message when item's name is required [CHAR LIMIT=NONE] -->
+    <string name="quantity_greater_than_zero">Quantity must be greater than or equal to 0</string>
 
 </resources>

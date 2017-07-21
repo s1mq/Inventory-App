@@ -3,7 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/activity_margin">
+    android:gravity="center"
+    android:padding="@dimen/activity_margin"
+    android:descendantFocusability="blocksDescendants">
+
+
 
     <TextView
         android:id="@+id/name"
@@ -38,9 +42,11 @@
         android:textColor="#AEB6BD"
         tools:text="Price" />
 
-    <ImageView
+    <ImageButton
+        android:id="@+id/item_sale"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:src="@drawable/ic_euro_symbol_black" />
+        android:backgroundTint="@color/colorAccent"
+        android:src="@drawable/ic_euro_symbol"/>
 </LinearLayout>

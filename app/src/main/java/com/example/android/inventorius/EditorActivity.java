@@ -100,8 +100,19 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
      */
     private ImageView mImageView;
 
+    /**
+     * ImageButton to increase item's quantity
+     */
     private ImageButton mIncrease;
+
+    /**
+     * ImageButton to decrease item's quantity
+     */
     private ImageButton mDecrease;
+
+    /**
+     * FloatingActionButton to insert image for the item
+     */
     private FloatingActionButton mImageFab;
     private String mImageString;
 
@@ -333,7 +344,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             minusOne = Integer.parseInt(quantityString);
         }
         if (minusOne == 0) {
-            Toast.makeText(this, "Quantity must be greater than or equal to 0",
+            Toast.makeText(this, R.string.quantity_greater_than_zero,
                     Toast.LENGTH_SHORT).show();
             return;
         }
@@ -393,7 +404,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
         // If the price is not provided by the user, don't try to parse the string into an
         // integer value. Use 0 by default.
-        int price = 0;
+        int price;
         if (!TextUtils.isEmpty(priceString)) {
             price = Integer.parseInt(priceString);
             values.put(ItemEntry.COLUMN_ITEM_PRICE, price);

@@ -1,6 +1,7 @@
 package com.example.android.inventorius;
 
 import android.app.LoaderManager;
+import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.CursorLoader;
@@ -16,7 +17,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.android.inventorius.data.ItemsContract;
 import com.example.android.inventorius.data.ItemsContract.ItemEntry;
