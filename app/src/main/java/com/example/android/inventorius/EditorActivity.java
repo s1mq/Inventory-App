@@ -36,6 +36,8 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import static android.os.Build.VERSION_CODES.M;
+import static com.example.android.inventorius.R.id.price;
+import static com.example.android.inventorius.R.id.quantity;
 
 public class EditorActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
     /**
@@ -350,29 +352,11 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         // Use trim to eliminate leading or trailing white space. Check if there is user input.
         // If not, make toast for user to include input, otherwise item will not be saved
         String nameString = mNameEditText.getText().toString().trim();
-        if (nameString.matches("")) {
-            Toast.makeText(this, R.string.item_name_required, Toast.LENGTH_SHORT).show();
-            return;
-        }
 
         String quantityString = mQuantityEditText.getText().toString().trim();
-        if (quantityString.matches("")) {
-            Toast.makeText(this, R.string.item_quantity_required, Toast.LENGTH_SHORT).show();
-            return;
 
-        }
         String priceString = mPriceEditText.getText().toString().trim();
-        if (priceString.matches("")) {
-            Toast.makeText(this, R.string.item_price_required, Toast.LENGTH_SHORT).show();
-            return;
-        }
 
-        if (mImageUri == null) {
-            Toast.makeText(this, R.string.item_image_required, Toast.LENGTH_SHORT).show();
-            return;
-        } else {
-            mImageString = mImageUri.toString();
-        }
 
         // Check if this is supposed to be a new item
         // and check if all the fields in the editor are blank
@@ -387,24 +371,44 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         // Create a ContentValues object where column names are the keys,
         // and item attributes from the editor are the values.
         ContentValues values = new ContentValues();
-        values.put(ItemEntry.COLUMN_ITEM_NAME, nameString);
+
+        if (!TextUtils.isEmpty(nameString)) {
+            values.put(ItemEntry.COLUMN_ITEM_NAME, nameString);
+        } else {
+            Toast.makeText(this, R.string.item_name_required, Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         // If the quantity is not provided by the user, don't try to parse the string into an
         // integer value. Use 0 by default.
-        int quantity = 0;
+        int quantity;
         if (!TextUtils.isEmpty(quantityString)) {
             quantity = Integer.parseInt(quantityString);
+            values.put(ItemEntry.COLUMN_ITEM_QUANTITY, quantity);
+        } else {
+            Toast.makeText(this, R.string.item_quantity_required, Toast.LENGTH_SHORT).show();
+            return;
         }
-        values.put(ItemEntry.COLUMN_ITEM_QUANTITY, quantity);
+
 
         // If the price is not provided by the user, don't try to parse the string into an
         // integer value. Use 0 by default.
         int price = 0;
         if (!TextUtils.isEmpty(priceString)) {
             price = Integer.parseInt(priceString);
+            values.put(ItemEntry.COLUMN_ITEM_PRICE, price);
+        } else {
+            Toast.makeText(this, R.string.item_price_required, Toast.LENGTH_SHORT).show();
+            return;
         }
-        values.put(ItemEntry.COLUMN_ITEM_PRICE, price);
-        values.put(ItemEntry.COLUMN_ITEM_IMAGE, mImageString);
+
+        if (mImageUri != null) {
+            values.put(ItemEntry.COLUMN_ITEM_IMAGE, mImageUri.toString());
+        } else {
+            Toast.makeText(this, R.string.item_image_required, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
 
         // Determine if this is a new or existing item by checking if mCurrentItemUri is null or not
         if (mCurrentItemUri == null) {

@@ -162,7 +162,11 @@ public class ItemProvider extends ContentProvider {
             throw new IllegalArgumentException("Quantity requires a value");
         }
 
-
+        // Check that the image is not null
+        String image = values.getAsString(ItemEntry.COLUMN_ITEM_IMAGE);
+        if (image == null) {
+            throw new IllegalArgumentException("Item requires an image");
+        }
 
 
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
@@ -240,7 +244,14 @@ public class ItemProvider extends ContentProvider {
             }
         }
 
-
+        // If the {@link ItemEntry#COLUMN_ITEM_IMAGE} key is present,
+        // CHeck that the name value is not null.
+        if (values.containsKey(ItemEntry.COLUMN_ITEM_IMAGE)) {
+            String image = values.getAsString(ItemEntry.COLUMN_ITEM_IMAGE);
+            if (image == null || image.matches("")) {
+                throw new IllegalArgumentException("Image required");
+            }
+        }
 
 
         // If there are no values to update, then don't try to update the database
