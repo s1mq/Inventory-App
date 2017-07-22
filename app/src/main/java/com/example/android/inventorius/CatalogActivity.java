@@ -88,7 +88,7 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
         values.put(ItemEntry.COLUMN_ITEM_NAME, "Pencil");
         values.put(ItemEntry.COLUMN_ITEM_QUANTITY, "5");
         values.put(ItemEntry.COLUMN_ITEM_PRICE, "25");
-        values.put(ItemEntry.COLUMN_ITEM_IMAGE, "content://com.android.providers.media.documents/document/image%3A57020");
+        values.put(ItemEntry.COLUMN_ITEM_IMAGE, "android.resource://com.example.android.inventorius/drawable/image_placeholder");
 
         // Insert a new row for pencil into the provider using the ContentResolver.
         // Use the {@link ItemEntry#CONTENT_URI} to indicate that we want to insert
